@@ -1,0 +1,440 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+% migurdia: semantic-based LaTeX resume template
+% Copyright (C) 2021 jeffswt
+% -----------------------------------------------------------------------------
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the “Software”), to
+% deal in the Software without restriction, including without limitation the
+% rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+% sell copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in
+% all copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+% FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+% IN THE SOFTWARE.
+% -----------------------------------------------------------------------------
+% Migurdia aims at creating a resume template whose body is entirely free of
+% formatting and styling except those specifically specified by the user. All
+% sections and data groups are customized through key-value arguments and can
+% be used or interpreted with ease.
+%
+% The document elements are categorized into 3 classes:
+%  1. sections - the largest classification of all
+%  2. clusters - each event or experience consists one single cluster
+%  3. items - specific aspects of clusters, or sections if no clusters apply
+%
+% 4 prebuilt sections are provided, namely the following:
+%  1. skills - fundamental programming, technical skills or abilities
+%  2. awards - prizes or honours received
+%  3. experiences - primarily work experiences, mostly of internships
+%  4. projects - small projects conducted while being sleepless
+%
+% To project the usage of Migurdia more vividly, an example is provided
+% directly as follows:
+% -----------------------------------------------------------------------------
+% % !TEX TS-program = xelatex
+% % !TEX encoding = UTF-8 Unicode
+% % !Mode:: "TeX:UTF-8"
+%
+% \input{migurdia.tex}
+%
+% \begin{document}
+%
+% \resumeHeading[
+%     name = John Smith,
+%     mobile = (+86) 138-3838-5438,
+%     email = example@example.com,
+%     homepage = example.com,
+% ]
+%
+% \begin{resumeSkillSection}
+% \resumeSkillCluster[
+%     aspect = Languages,
+%     enlist = {Java, Rust, Go, OCaml},
+% ]
+% \resumeSkillCluster[
+%     aspect = Frameworks and Tools,
+%     enlist = {PyTorch, Tensorflow, mxnet, Keras},
+% ]
+% \end{resumeSkillSection}
+%
+% \begin{resumeEducationSection}
+% \resumeEducationCluster[
+%     institute = University of Claydon,
+%     role = Undergraduate student in Computer Science,
+%     beginTime = Jan. 2038,
+%     endTime = Present,
+%     city = Claydon,
+%     region = Atlantica,
+% ]
+% \resumeEducationCluster[
+%     institute = HS Affiliated to University of Claydon,
+%     role = High school student,
+%     beginTime = Jan. 1970,
+%     endTime = Jan. 2038,
+%     city = Claydon,
+%     region = Atlantica,
+% ]
+% \end{resumeEducationSection}
+%
+% \begin{resumeAwardSection}
+% \resumeAwardCluster[
+%     prize = Metal medal,
+%     name = 44th ICPC Atlantica Regional Contest Claydon Site,
+%     time = Jan. 2038,
+% ]
+% \resumeAwardCluster[
+%     prize = Metal medal,
+%     name = 1970 Atlantica Collegiate Programming Contest,
+%     time = Jan. 1970,
+% ]
+% \end{resumeAwardSection}
+%
+% \begin{resumeExperienceSection}
+% \resumeExperienceCluster[
+%     role = Internship in Software Engineering,
+%     institute = Claydon Corporation,
+%     beginTime = Jan. 1970,
+%     endTime = Jan. 2038,
+%     location = {Claydon, Atlantica},
+% ]{
+%     \resumeItem Dropped all databases from a production database.
+%     \resumeItem Restored the production database from scratch by calculating
+%         residuals inferred from orbiting electrons.
+% }
+% \resumeExperienceCluster[
+%     role = Professor in Quantum Physics,
+%     institute = University of Claydon,
+%     beginTime = Jan. 2038,
+%     location = {Claydon, Atlantica},
+% ]{
+%     \resumeItem Held lectures on how to drop production databases.
+%     \resumeItem Held lectures on restoring production database from scratch.
+% }
+% \end{resumeExperienceSection}
+%
+% \begin{resumeProjectSection}
+% \resumeProjectCluster[
+%     name = Automatic Database Dropper,
+%     frameworks = {Shell},
+%     beginTime = Jan. 1970,
+%     endTime = Jan. 2038,
+% ]{
+%     \resumeItem Link to project: \resumeWebLink{https://example.com}
+%     \resumeItem Drops database on script download.
+% }
+% \resumeProjectCluster[
+%     name = Database Recovery Utility,
+%     frameworks = {SQL},
+%     beginTime = Jan. 2038,
+%     endTime = Present,
+% ]{
+%     \resumeItem Link to project: \resumeWebLink{https://example.com}
+%     \resumeItem Restores databases out of nowhere.
+%     \resumeItem Does \textbf{not} guarantee data intactness.
+% }
+% \end{resumeProjectSection}
+%
+%\end{document}
+% -----------------------------------------------------------------------------
+
+\documentclass[a4paper,11pt]{article}
+
+% -------------------------------- packages -----------------------------------
+
+\usepackage[empty]{fullpage}  % page size limitations
+\usepackage{titlesec}  % section format definition
+\usepackage{enumitem}  % units of measurement (?)
+\usepackage[hidelinks]{hyperref}  % hyperlinks
+\usepackage{keycommand}  % key-value command definitions
+\usepackage{ragged2e}  % used to justify itemize-s
+\usepackage{xeCJK}  % allow cjk characters in xelatex
+
+% ------------------------------ font config ----------------------------------
+
+\newcommand{\resumeFontSerif}{Adobe Song Std}
+\newcommand{\resumeFontSans}{Adobe Heiti Std}
+\newcommand{\resumeFontMono}{Adobe Fangsong Std}
+\newcommand{\resumeFontScript}{Adobe Kaiti Std}
+\newcommand{\resumeFontLishu}{Lisu}
+\newcommand{\resumeFontYouyuan}{YouYuan}
+
+\setCJKmainfont[
+    BoldFont = \resumeFontSans,
+    ItalicFont = \resumeFontScript,
+    SmallCapsFont = \resumeFontSans,
+]{\resumeFontSerif}
+\setCJKsansfont{\resumeFontSans}
+\setCJKmonofont{\resumeFontMono}
+
+% ----------------------------- style config ----------------------------------
+
+% custom padding sizes, scaled to font size
+\newcommand{\resumeStyleSectionPaddingBefore}{\vspace{-0.6em}}
+\newcommand{\resumeStyleClusterPaddingBefore}{\vspace{-0.68em}}
+\newcommand{\resumeStyleItemListPaddingBefore}{\vspace{-0.8em}}
+\newcommand{\resumeStyleItemPaddingBefore}{\vspace{-0.32em}}
+\newcommand{\resumeStyleSectionPaddingAfter}{\vspace{-0.6em}}
+
+% hotfixes for style defects, scaled to font size
+\newcommand{\resumeStylefixSkillItem}{\vspace{-0.28em}}
+\newcommand{\resumeStylefixEducationSection}{\vspace{-0.1em}}
+\newcommand{\resumeStylefixAwardItem}{\vspace{-1.36em}}
+\newcommand{\resumeStylefixAwardSectionBefore}{\vspace{1.2em}}
+\newcommand{\resumeStylefixAwardSectionAfter}{\vspace{-0.84em}}
+\newcommand{\resumeStylefixSingleSubheading}{\vspace{0.6em}}
+
+% adjust page margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+% justifyed alignment
+\raggedbottom
+\raggedright
+
+% tabular column separator lengths
+\setlength{\tabcolsep}{0in}
+
+% section formatting
+\titleformat{\section}{
+  \resumeStyleSectionPaddingBefore\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule]
+
+% url style stays the same
+\urlstyle{same}
+
+% -------------------------------- functions ----------------------------------
+
+% @brief \labelitemii -- renewed bullet icon
+\renewcommand{\labelitemii}{
+    $\vcenter{\hbox{\tiny$\bullet$}}$
+}
+
+% @brief \resumeHeading -- header containing personal information, must be
+%        used before anything appears in the document
+% @param name: resume author's name
+% @param mobile: mobile phone in format (+..) ...-....-.... or similar
+% @param email: user email, creates hyperlink also
+% @param homepage: user website, do not include http/https schema
+\newkeycommand{\resumeHeading}[
+        name = John Smith,
+        mobile = (+86) 138-3838-5438,
+        email = example@example.com,
+        homepage = example.com,
+]{
+    \newpage \textbf{\Huge \commandkey{name}}
+    \\ \vspace{0.1em} \small \commandkey{mobile}
+    $|$ \href{mailto:\commandkey{email}}{\underline{\commandkey{email}}}
+    $|$ \href{https://\commandkey{homepage}}{\underline{\commandkey{homepage}}}
+    \vspace{0.8em}
+}
+
+% @brief \begin{resumeSection} -- contains a resume section within, creating
+%        title and section decoration alongs
+% @param 1: title of this section
+% @note: if padding appears to behave strangely, modify the relevant padding
+%        values in the project header
+\newenvironment{resumeSection}[1]{
+    \resumeStyleSectionPaddingBefore
+    \section{#1}
+    \begin{itemize}[leftmargin=0.007\textwidth, label={}]
+}{
+    \end{itemize}
+    \resumeStyleSectionPaddingAfter
+}
+
+% @brief \begin{resumeSkillSection} -- technical skills section
+\newenvironment{resumeSkillSection}{
+    \begin{resumeSection}{Technical Skills}
+}{
+    \end{resumeSection}
+}
+
+% @brief \begin{resumeEducationSection} -- education section
+% @note: if padding appears to behave strangely, change the hotfix value
+\newenvironment{resumeEducationSection}{
+    \begin{resumeSection}{Education}
+}{
+    \end{resumeSection}
+    \resumeStylefixEducationSection
+}
+
+% @brief \begin{resumeAwardSection} -- awards section
+% @note: if padding appears to behave strangely, change the hotfix value
+\newenvironment{resumeAwardSection}{
+    \begin{resumeSection}{Awards}
+        \resumeStylefixAwardSectionBefore
+}{
+    \end{resumeSection}
+    \resumeStylefixAwardSectionAfter
+}
+
+% @brief \begin{resumeExperienceSection} -- experience section
+\newenvironment{resumeExperienceSection}{
+    \begin{resumeSection}{Experience}
+}{
+    \end{resumeSection}
+}
+
+% @brief \begin{resumeProjectSection} -- projects section
+\newenvironment{resumeProjectSection}{
+    \begin{resumeSection}{Projects}
+}{
+    \end{resumeSection}
+}
+
+% @brief \resumeSubheadingTwoLinesInternal -- internal function showing
+%        subheading composed of 4 units or 2 lines, in order:
+%        **Title**                                               Remark
+%        *Subtitle line*                                      Subremark
+% @param 1: Title to be used with bold text, lies on the upper-left
+% @param 2: Subtitle to be used in small italic, lies on the lower-left
+% @param 3: Remark in regular style, lies on the upper-right
+% @param 4: Subremark in small italic, lies on the lower-right
+\newcommand{\resumeSubheadingTwoLinesInternal}[4]{
+    \resumeStyleClusterPaddingBefore \item
+    \begin{tabular*}{0.986\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & #3 \\
+        \textit{\small #2} & \textit{\small #4} \\
+    \end{tabular*}
+}
+
+% @brief \resumeSubheadingOneLineInternal -- internal function showing
+%        subheading composed of 2 units or 1 line, in order:
+%        **Title**                                               Remark
+% @param 1: Title to be used with bold text, lies on the upper-left
+% @param 2: Remark in regular style, lies on the upper-right
+% @note: if padding appears to behave strangely, change the hotfix value
+\newcommand{\resumeSubheadingOneLineInternal}[2]{
+    \resumeStyleClusterPaddingBefore \item
+    \begin{tabular*}{0.986\textwidth}{l@{\extracolsep{\fill}}r}
+        \small #1 & #2 \\
+    \end{tabular*}
+    \resumeStylefixSingleSubheading
+}
+
+% @brief \resumeClusterItemList -- internal function used to withhold items
+% @param 1: a list of \resumeItem (s)
+\newcommand{\resumeClusterItemList}[1]{
+    \resumeStyleItemListPaddingBefore
+    \begin{itemize}[leftmargin=1.6em, rightmargin=0.007\textwidth]
+        \justifying
+        #1
+    \end{itemize}
+}
+
+% @brief \resumeSkillCluster -- cluster of an aspect of skill
+% @param aspect: whichever aspect to be enumerated, e.g. Languages, Tools
+% @param enlist: list of skills, in plain text
+\newkeycommand{\resumeSkillCluster}[
+        aspect = Skill,
+        enlist = List skills here,
+]{
+    \resumeStylefixSkillItem \resumeStyleItemPaddingBefore
+    \small \item \textbf{\commandkey{aspect}}{: \commandkey{enlist}}
+}
+
+% @brief \resumeEducationCluster -- cluster describing education received
+% @param institute: which university / high school / etc. did you attend
+% @param role: which major / minor were you under pursuit
+% @param beginTime: when did this education begin
+% @param endTime: when did / will this education end (Present if ongoing)
+% @param city: in which city did you attend this institute in
+% @param region: in which country / region was the city located at
+\newkeycommand{\resumeEducationCluster}[
+        institute = University of Claydon,
+        role = Undergraduate student in Computer Science,
+        beginTime = Jan. 1970,
+        endTime = Present,
+        city = Claydon,
+        region = Atlantica,
+]{
+    \resumeSubheadingTwoLinesInternal
+        {\commandkey{institute}}
+        {\commandkey{role}}
+        {\commandkey{beginTime} -- \commandkey{endTime}}
+        {\commandkey{city}, \commandkey{region}}
+}
+
+% @brief \resumeAwardCluster -- cluster describing award received
+% @param prize: level of award, e.g. Silver medal / First prize / etc.
+% @param name: name of award or canonical competition name
+% @param time: time of competition taken place (or award received otherwise)
+\newkeycommand{\resumeAwardCluster}[
+        prize = Metal Medal,
+        name = ICPC 1970 Claydon Regionals,
+        time = Jan. 1970,
+]{
+    \resumeStylefixAwardItem \resumeStyleItemPaddingBefore \item
+    % this part share the same code as \resumeSubheadingOneLineInternal does,
+    % but does not use due to padding semantics' reasons.
+    \begin{tabular*}{0.986\textwidth}{l@{\extracolsep{\fill}}r}
+        \small \textit{\commandkey{prize}}, {\commandkey{name}} &
+            \commandkey{time} \\
+    \end{tabular*}
+}
+
+% @brief \resumeExperienceCluster -- cluster enlisting work experience
+% @param role: work role during participation
+% @param institute: company or other institute which you worked at
+% @param beginTime: begin time of this work experience
+% @param endTime: end time of this work experience (Present if ongoing)
+% @param location: location of the institute (Remote if wfh)
+% @param 1: list of cluster items
+\newkeycommand{\resumeExperienceCluster}[
+        role = Internship in Software Engineering,
+        institute = Claydon Corporation,
+        beginTime = Jan. 1970,
+        endTime = Present,
+        location = {Claydon, Atlantica},
+][1]{
+    \resumeSubheadingTwoLinesInternal
+        {\commandkey{role}}
+        {\commandkey{institute}}
+        {\commandkey{beginTime} -- \commandkey{endTime}}
+        {\commandkey{location}}
+    \resumeClusterItemList{#1}
+}
+
+% @brief \resumeProjectCluster -- cluster describing project involved
+% @param name: human-friendly name of project
+% @param framework: languages, tech stacks or frameworks involved
+% @param beginTime: begin time of development
+% @param endTime: termination time of development
+% @param 1: list of cluster items
+\newkeycommand{\resumeProjectCluster}[
+        name = Example Project,
+        frameworks = Assembly,
+        beginTime = Jan. 1970,
+        endTime = Present,
+][1]{
+    \resumeSubheadingOneLineInternal
+        {\textbf{\commandkey{name}} $|$ \emph{\commandkey{frameworks}}}
+        {\commandkey{beginTime} -- \commandkey{endTime}}
+    \resumeClusterItemList{#1}
+}
+
+% @brief \resumeItem -- cluster item, preceding plain text but do not require
+%        any braces around the plain text subseding it
+\newcommand{\resumeItem}{
+    \resumeStyleItemPaddingBefore \item \small
+}
+
+% @brief \resumeWebLink -- lazily create a clickable hyperlink
+% @param 1: link with https:// schema prepended
+\newcommand{\resumeWebLink}[1]{
+    \href{#1}{\underline{#1}}
+}
