@@ -1,0 +1,104 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\input{migurdia}
+
+\begin{document}
+
+\resumeHeading[
+    name = John Smith,
+    mobile = (+86) 138-3838-5438,
+    email = example@example.com,
+    homepage = example.com,
+]
+
+\begin{resumeSkillSection}
+\resumeSkillCluster[
+    aspect = Languages,
+    enlist = {Java, Rust, Go, OCaml},
+]
+\resumeSkillCluster[
+    aspect = Frameworks and Tools,
+    enlist = {PyTorch, Tensorflow, mxnet, Keras},
+]
+\end{resumeSkillSection}
+
+\begin{resumeEducationSection}
+\resumeEducationCluster[
+    institute = University of Claydon,
+    role = Undergraduate student in Computer Science,
+    beginTime = Jan. 2038,
+    endTime = Present,
+    city = Claydon,
+    region = Atlantica,
+]
+\resumeEducationCluster[
+    institute = HS Affiliated to University of Claydon,
+    role = High school student,
+    beginTime = Jan. 1970,
+    endTime = Jan. 2038,
+    city = Claydon,
+    region = Atlantica,
+]
+\end{resumeEducationSection}
+
+\begin{resumeAwardSection}
+\resumeAwardCluster[
+    prize = Metal medal,
+    name = 44th ICPC Atlantica Regional Contest Claydon Site,
+    time = Jan. 2038,
+]
+\resumeAwardCluster[
+    prize = Metal medal,
+    name = 1970 Atlantica Collegiate Programming Contest,
+    time = Jan. 1970,
+]
+\end{resumeAwardSection}
+
+\begin{resumeExperienceSection}
+\resumeExperienceCluster[
+    role = Internship in Software Engineering,
+    institute = Claydon Corporation,
+    beginTime = Jan. 1970,
+    endTime = Jan. 2038,
+    location = {Claydon, Atlantica},
+]{
+    \resumeItem Dropped all databases from a production database.
+    \resumeItem Restored the production database from scratch by calculating
+        residuals inferred from orbiting electrons.
+}
+\resumeExperienceCluster[
+    role = Professor in Quantum Physics,
+    institute = University of Claydon,
+    beginTime = Jan. 2038,
+    location = {Claydon, Atlantica},
+]{
+    \resumeItem Held lectures on how to drop production databases.
+    \resumeItem Held lectures on restoring production database from scratch.
+}
+\end{resumeExperienceSection}
+
+\begin{resumeProjectSection}
+\resumeProjectCluster[
+    name = Automatic Database Dropper,
+    frameworks = {Shell},
+    beginTime = Jan. 1970,
+    endTime = Jan. 2038,
+]{
+    \resumeItem Link to project: \resumeWebLink{https://example.com}
+    \resumeItem Drops database on script download.
+}
+\resumeProjectCluster[
+    name = Database Recovery Utility,
+    frameworks = {SQL},
+    beginTime = Jan. 2038,
+    endTime = Present,
+]{
+    \resumeItem Link to project: \resumeWebLink{https://example.com}
+    \resumeItem Restores databases out of nowhere.
+    \resumeItem Does \textbf{not} guarantee data intactness.
+}
+\end{resumeProjectSection}
+
+\end{document}

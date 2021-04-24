@@ -10,9 +10,9 @@ Migurdia aims at creating a resume template whose body is entirely free of forma
 
 XeLaTeX is required for using migurdia.
 
-Create a new LaTeX document aside `migurdia.tex` in the same directory, copy the template into that file and you can start typesetting your resume right away.
+You may start typesetting your resume right away by just editing `template.tex` aside `migurdia.tex` in the same directory. Documentation can be found in `migurdia.tex` above command definitions.
 
-If you are using Overleaf, remember to:
+If you are using Overleaf, do remember to:
 
 * set your *compiler* in the *menu* to *XeLaTeX*
 * ensure that the *main document* is *not* `migurdia.tex`
