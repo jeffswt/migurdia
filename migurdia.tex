@@ -145,7 +145,7 @@
 % }
 % \end{resumeProjectSection}
 %
-%\end{document}
+% \end{document}
 % -----------------------------------------------------------------------------
 
 \documentclass[a4paper,11pt]{article}
@@ -162,20 +162,24 @@
 
 % ------------------------------ font config ----------------------------------
 
-\newcommand{\resumeFontSerif}{Adobe Song Std}
-\newcommand{\resumeFontSans}{Adobe Heiti Std}
-\newcommand{\resumeFontMono}{Adobe Fangsong Std}
-\newcommand{\resumeFontScript}{Adobe Kaiti Std}
-\newcommand{\resumeFontLishu}{Lisu}
-\newcommand{\resumeFontYouyuan}{YouYuan}
+% * uncomment these if you require CJK character support and have those fonts
+%   installed in your fonts library
+% * run `fc-cache -f` before xelatex if you experience lags
 
-\setCJKmainfont[
-    BoldFont = \resumeFontSans,
-    ItalicFont = \resumeFontScript,
-    SmallCapsFont = \resumeFontSans,
-]{\resumeFontSerif}
-\setCJKsansfont{\resumeFontSans}
-\setCJKmonofont{\resumeFontMono}
+% \newcommand{\resumeFontSerif}{Adobe Song Std}
+% \newcommand{\resumeFontSans}{Adobe Heiti Std}
+% \newcommand{\resumeFontMono}{Adobe Fangsong Std}
+% \newcommand{\resumeFontScript}{Adobe Kaiti Std}
+% \newcommand{\resumeFontLishu}{Lisu}
+% \newcommand{\resumeFontYouyuan}{YouYuan}
+
+% \setCJKmainfont[
+%     BoldFont = \resumeFontSans,
+%     ItalicFont = \resumeFontScript,
+%     SmallCapsFont = \resumeFontSans,
+% ]{\resumeFontSerif}
+% \setCJKsansfont{\resumeFontSans}
+% \setCJKmonofont{\resumeFontMono}
 
 % ----------------------------- style config ----------------------------------
 
@@ -211,7 +215,7 @@
 % section formatting
 \titleformat{\section}{
   \resumeStyleSectionPaddingBefore\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule]
+}{}{0em}{}[\titlerule]
 
 % url style stays the same
 \urlstyle{same}
