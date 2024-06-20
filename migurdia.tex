@@ -33,12 +33,13 @@
 %  2. entries - each single thing consists one entry
 %  3. items - equivalent to the bullet points in a list
 %
-% 4 prebuilt sections are provided, namely the following:
+% 5 prebuilt sections are provided, namely the following:
 %  1. skills - fundamental programming, technical skills or abilities, or
 %     alternatively, 'brief'
 %  2. awards - prizes or honours received
 %  3. experiences - primarily work experiences, mostly of internships
 %  4. projects - small projects conducted while being sleepless
+%  5. publications - papers or articles published in journals or conferences
 %
 % You may acquire a template right aside Migurdia.
 
@@ -61,6 +62,8 @@
 % * uncomment these if you require CJK character support and have those fonts
 %   installed in your fonts library
 % * run `fc-cache -f` before xelatex if you experience lags
+
+\setmainfont{Latin Modern Roman}
 
 % \newcommand{\resumeFontSerif}{Adobe Song Std}
 % \newcommand{\resumeFontSans}{Adobe Heiti Std}
@@ -203,6 +206,13 @@
     \end{resumeSection}
 }
 
+% @brief \begin{resumePublicationSection} -- publications section
+\newenvironment{resumePublicationSection}{
+    \begin{resumeSection}{Publications}
+}{
+    \end{resumeSection}
+}
+
 % @brief \resumeSubheadingTwoLinesInternal -- internal function showing
 %        subheading composed of 4 units or 2 lines, in order:
 %        **Title**                                               Remark
@@ -252,6 +262,29 @@
 ]{
     \resumeStylefixSkillItem \resumeStyleItemPaddingBefore
     \small \item \textbf{\commandkey{title}}{: \commandkey{list}}
+}
+
+% @brief \resumePublicationEntry -- cluster describing publications
+% @param title: title of the publication
+% @param date: when was this published
+% @param author: a list of all authors, manually separated with commas
+\newkeycommand{\resumePublicationEntry}[
+        title = Attention is All You Need,
+        date = Jun. 2017,
+        author = {Ashish Vaswani, Noam Shazeer, et al.},
+]{
+    \resumeStyleClusterPaddingBefore \item
+    \begin{tabular*}{0.986\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{\addfontfeature{LetterSpace=-3.6} \commandkey{title}} & \commandkey{date}
+    \end{tabular*}
+    \\~~~~\textit{\small \commandkey{author}}
+}
+\newenvironment{resumePublicationEntryBody}{
+    \begin{itemize}[noitemsep,topsep=0pt]
+    \vspace{-2pt}
+}{
+    \end{itemize}
+    \medskip
 }
 
 % @brief \resumeEducationEntry -- describing education received
