@@ -13,92 +13,133 @@
     homepage = example.com,
 ]
 
+% \begin{resumeBriefSection}
+%     \resumeBriefEntry[
+%         title = Music,
+%         text = {Sing, Dance, Rap, Basketball},
+%     ]
+%     \resumeBriefEntry[
+%         title = Lyrics,
+%         text = {Never gonna give you up, never gonna let you down, never gonna run around and desert you},
+%     ]
+% \end{resumeBriefSection}
+
 \begin{resumeSkillSection}
-\resumeSkillCluster[
-    aspect = Languages,
-    enlist = {Java, Rust, Go, OCaml},
-]
-\resumeSkillCluster[
-    aspect = Frameworks and Tools,
-    enlist = {PyTorch, Tensorflow, mxnet, Keras},
-]
+    \resumeSkillEntry[
+        title = Languages,
+        text = {Java, Scheme, Rust, Go, OCaml, Haskell},
+    ]
+    \resumeSkillEntry[
+        title = Frameworks and Tools,
+        text = {PyTorch, Tensorflow, Keras, Scikit-learn, Pandas, Numpy, Matplotlib},
+    ]
 \end{resumeSkillSection}
 
 \begin{resumeEducationSection}
-\resumeEducationCluster[
-    institute = University of Claydon,
-    role = Undergraduate student in Computer Science,
-    beginTime = Jan. 2038,
-    endTime = Present,
-    city = Claydon,
-    region = Atlantica,
-]
-\resumeEducationCluster[
-    institute = HS Affiliated to University of Claydon,
-    role = High school student,
-    beginTime = Jan. 1970,
-    endTime = Jan. 2038,
-    city = Claydon,
-    region = Atlantica,
-]
+    \resumeEducationEntry[
+        institute = Claydon Institute of Mythology,
+        role = PhD in Quantum Agriculture,
+        beginTime = Jan. 2038,
+        endTime = Present,
+        location = {Claydon, Atlantica},
+    ]
+    \resumeEducationEntry[
+        institute = University of Claydon,
+        role = Undergraduate student in Computer Science,
+        beginTime = Jan. 1970,
+        endTime = Jan. 2038,
+        location = {Claydon, Atlantica},
+    ]
 \end{resumeEducationSection}
 
+
+\begin{resumePublicationSection}
+    \resumePublicationEntry[
+        title = {On the Feedability of Quantum Cows},
+        date = {Apr. 2038},
+        author = {John Smith\footnotemark[1], Jim Author\footnotemark[1], Humphrey Orangeby, Ian Strucktor}
+    ]
+    \begin{resumePublicationEntryBody}
+        \item We investigate the feedability of quantum cows, and find that they are indeed feedable.
+            These cows are able to consume non-quantum grass and produce quasi-entangled milk.
+        \item We demonstrate that the milk produced by quantum cows are non-toxic to humans.
+        \item We reached a $+12.3\%$ improvement in production rate of quasi-entangled milk, surpassing
+            traditional quantum cow feeding methods.
+        \item Submitted to Mature, under review. Preprint available at \href{https://arxiv.org/abs/3802.82931}{\underline{arXiv:3802.82931}}.
+    \end{resumePublicationEntryBody}
+    
+    \resumePublicationEntry[
+        title = {DSH: Effective Distributed Sheep Herding},
+        date = {Mar. 2038},
+        author = {Bernard Woolies, John Smith, Jim Author, Ian Strucktor}
+    ]
+    \begin{resumePublicationEntryBody}
+        \item A novel distributed sheep herding algorithm, DSH, is capable of achieving $O(\log^{2.38} n)$ amortized
+            time complexity for herding $n$ sheep.
+        \item This brings a complexity improvement to state-of-the-art sheep herding methods.
+    \end{resumePublicationEntryBody}
+\end{resumePublicationSection}
+\footnotetext[1]{Equal contribution.}
+
 \begin{resumeAwardSection}
-\resumeAwardCluster[
-    prize = Metal medal,
-    name = 44th ICPC Atlantica Regional Contest Claydon Site,
-    time = Jan. 2038,
-]
-\resumeAwardCluster[
-    prize = Metal medal,
-    name = 1970 Atlantica Collegiate Programming Contest,
-    time = Jan. 1970,
-]
+    \resumeAwardEntry[
+        prize = Metal medal,
+        name = Non-international Obfuscated Scripting Code Contest (NiOSCC),
+        time = Feb. 2038,
+    ]
+    \resumeAwardEntry[
+        prize = Metal medal,
+        name = 42th ICPC Atlantica Regional Contest Claydon Site,
+        time = Jan. 2038,
+    ]
+    \resumeAwardEntry[
+        prize = Metal medal,
+        name = 1970 Atlantica Collegiate Programming Contest,
+        time = Jan. 1970,
+    ]
 \end{resumeAwardSection}
 
 \begin{resumeExperienceSection}
-\resumeExperienceCluster[
-    role = Internship in Software Engineering,
-    institute = Claydon Corporation,
-    beginTime = Jan. 1970,
-    endTime = Jan. 2038,
-    location = {Claydon, Atlantica},
-]{
-    \resumeItem Dropped all databases from a production database.
-    \resumeItem Restored the production database from scratch by calculating
+    \resumeExperienceEntry[
+        role = Internship in Software Engineering,
+        institute = Claydon Corporation,
+        beginTime = Jan. 1970,
+        endTime = Jan. 2038,
+        location = {Claydon, Atlantica},
+    ]{
+        \resumeItem Dropped all databases from a production database.
+        \resumeItem Restored the production database from scratch by calculating
         residuals inferred from orbiting electrons.
-}
-\resumeExperienceCluster[
-    role = Professor in Quantum Physics,
-    institute = University of Claydon,
-    beginTime = Jan. 2038,
-    location = {Claydon, Atlantica},
-]{
-    \resumeItem Held lectures on how to drop production databases.
-    \resumeItem Held lectures on restoring production database from scratch.
-}
+    }
+    \resumeExperienceEntry[
+        role = Professor in Quantum Physics,
+        institute = University of Claydon,
+        beginTime = Jan. 2038,
+        location = {Claydon, Atlantica},
+    ]{
+        \resumeItem Held lectures on how to drop production databases.
+        \resumeItem Held lectures on restoring production database from scratch.
+    }
 \end{resumeExperienceSection}
 
 \begin{resumeProjectSection}
-\resumeProjectCluster[
-    name = Automatic Database Dropper,
-    frameworks = {Shell},
-    beginTime = Jan. 1970,
-    endTime = Jan. 2038,
-]{
-    \resumeItem Link to project: \resumeWebLink{https://example.com}
-    \resumeItem Drops database on script download.
-}
-\resumeProjectCluster[
-    name = Database Recovery Utility,
-    frameworks = {SQL},
-    beginTime = Jan. 2038,
-    endTime = Present,
-]{
-    \resumeItem Link to project: \resumeWebLink{https://example.com}
-    \resumeItem Restores databases out of nowhere.
-    \resumeItem Does \textbf{not} guarantee data intactness.
-}
+    \resumeProjectEntry[
+        name = Automatic Database Dropper,
+        frameworks = {Shell},
+        duration = {Jan. 1970 -- Jan. 2038},
+    ]{
+        \resumeItem Link to project: \resumeWebLink{https://example.com}
+        \resumeItem Drops database on script download.
+    }
+    \resumeProjectEntry[
+        name = Database Recovery Utility,
+        frameworks = {SQL},
+        duration = {Jan. 2038 -- Present},
+    ]{
+        \resumeItem Link to project: \resumeWebLink{https://example.com}
+        \resumeItem Restores databases out of nowhere.
+        \resumeItem Does \textbf{not} guarantee data intactness.
+    }
 \end{resumeProjectSection}
 
 \end{document}
