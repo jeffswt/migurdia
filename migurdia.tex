@@ -91,6 +91,7 @@
 
 % hotfix for style defects, scaled to font size
 \newcommand{\resumeStylefixSkillItem}{\vspace{-0.28em}}
+\newcommand{\resumeStylefixBriefItem}{\vspace{-0.28em}}
 \newcommand{\resumeStylefixEducationSection}{\vspace{-0.1em}}
 \newcommand{\resumeStylefixAwardItem}{\vspace{-1.36em}}
 \newcommand{\resumeStylefixAwardSectionBefore}{\vspace{1.2em}}
@@ -133,10 +134,10 @@
 % @param email: user email, creates hyperlink also
 % @param homepage: user website, do not include http/https schema
 \newkeycommand{\resumeHeading}[
-        name = John Smith,
-        mobile = (+86) 138-3838-5438,
-        email = example@example.com,
-        homepage = example.com,
+    name = John Smith,
+    mobile = (+86) 138-3838-5438,
+    email = example@example.com,
+    homepage = example.com,
 ]{
     \newpage \textbf{\Huge \commandkey{name}}
     \\ \vspace{0.1em} \small \commandkey{mobile}
@@ -255,13 +256,24 @@
 
 % @brief \resumeSkillEntry -- entry of a single (group of) skill
 % @param title: whichever aspect that is described, e.g. Languages, Tools
-% @param list: list of skills, in plain text
+% @param text: list of skills, in plain text, separated by commas
 \newkeycommand{\resumeSkillEntry}[
-        title = Skill,
-        list = List skills here,
+    title = Music,
+    text = {Sing, Dance, Rap, Basketball},
 ]{
     \resumeStylefixSkillItem \resumeStyleItemPaddingBefore
-    \small \item \textbf{\commandkey{title}}{: \commandkey{list}}
+    \small \item \textbf{\commandkey{title}}{: \commandkey{text}}
+}
+
+% @brief \resumeBriefEntry -- entry of a set of metadata info.
+% @param title: whichever aspect that is described, e.g. Languages, Tools
+% @param text: plain text
+\newkeycommand{\resumeBriefEntry}[
+    title = Training duration,
+    text = 2 year and a half,
+]{
+    \resumeStylefixBriefItem \resumeStyleItemPaddingBefore
+    \small \item \textbf{\commandkey{title}}{: \commandkey{text}}
 }
 
 % @brief \resumePublicationEntry -- cluster describing publications
@@ -269,9 +281,9 @@
 % @param date: when was this published
 % @param author: a list of all authors, manually separated with commas
 \newkeycommand{\resumePublicationEntry}[
-        title = Attention is All You Need,
-        date = Jun. 2017,
-        author = {Ashish Vaswani, Noam Shazeer, et al.},
+    title = Attention is All You Need,
+    date = Jun. 2017,
+    author = {Ashish Vaswani, Noam Shazeer, et al.},
 ]{
     \resumeStyleClusterPaddingBefore \item
     \begin{tabular*}{0.986\textwidth}[t]{l@{\extracolsep{\fill}}r}
@@ -294,11 +306,11 @@
 % @param endTime: when did / will this education end (Present if ongoing)
 % @param location: describe location (city / country / region)
 \newkeycommand{\resumeEducationEntry}[
-        institute = University of Claydon,
-        role = Undergraduate student in Computer Science,
-        beginTime = Jan. 1970,
-        endTime = Present,
-        location = {Claydon, Atlantica},
+    institute = University of Claydon,
+    role = Undergraduate student in Computer Science,
+    beginTime = Jan. 1970,
+    endTime = Present,
+    location = {Claydon, Atlantica},
 ]{
     \resumeSubheadingTwoLinesInternal
         {\commandkey{institute}}
@@ -312,9 +324,9 @@
 % @param name: name of award or canonical competition name
 % @param time: time of competition taken place (or award received otherwise)
 \newkeycommand{\resumeAwardEntry}[
-        prize = Metal Medal,
-        name = ICPC 1970 Claydon Regionals,
-        time = Jan. 1970,
+    prize = Metal Medal,
+    name = ICPC 1970 Claydon Regionals,
+    time = Jan. 1970,
 ]{
     \resumeStylefixAwardItem \resumeStyleItemPaddingBefore \item
     % this part share the same code as \resumeSubheadingOneLineInternal does,
@@ -333,11 +345,11 @@
 % @param location: location of the institute (Remote if wfh)
 % @param 1: list of cluster items
 \newkeycommand{\resumeExperienceEntry}[
-        role = Internship in Software Engineering,
-        institute = Claydon Corporation,
-        beginTime = Jan. 1970,
-        endTime = Present,
-        location = {Claydon, Atlantica},
+    role = Internship in Software Engineering,
+    institute = Claydon Corporation,
+    beginTime = Jan. 1970,
+    endTime = Present,
+    location = {Claydon, Atlantica},
 ][1]{
     \resumeSubheadingTwoLinesInternal
         {\commandkey{role}}
@@ -353,9 +365,9 @@
 % @param duration: begin -- termination time of development
 % @param 1: list of cluster items
 \newkeycommand{\resumeProjectEntry}[
-        name = Example Project,
-        frameworks = Assembly,
-        duration = {Jan. 1970 -- Present},
+    name = Example Project,
+    frameworks = Assembly,
+    duration = {Jan. 1970 -- Present},
 ][1]{
     \resumeSubheadingOneLineInternal
         {\textbf{\commandkey{name}} $|$ \emph{\commandkey{frameworks}}}
