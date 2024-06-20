@@ -1,0 +1,142 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\input{migurdia}
+\renewcommand{\configureResumeLanguage}{zh-Hans}
+
+\begin{document}
+
+\resumeHeading[
+    name = 江斯密,
+    mobile = (+86) 138-3838-5438,
+    email = simi.jiang@claydon.edu,
+    homepage = example.com,
+]
+
+% \begin{resumeBriefSection}
+%     \resumeBriefEntry[
+%         title = 喜欢的事,
+%         text = {唱，跳，rap，篮球},
+%     ]
+%     \resumeBriefEntry[
+%         title = 丰崎素世,
+%         text = {求你了，我什么都会做的},
+%     ]
+% \end{resumeBriefSection}
+
+\begin{resumeSkillSection}
+    \resumeSkillEntry[
+        title = 编程语言,
+        text = {Java, Scheme, Rust, Go, OCaml, Haskell},
+    ]
+    \resumeSkillEntry[
+        title = 框架与工具,
+        text = {PyTorch, Tensorflow, Keras, Scikit-learn, Pandas, Numpy, Matplotlib},
+    ]
+\end{resumeSkillSection}
+
+\begin{resumeEducationSection}
+    \resumeEducationEntry[
+        institute = 克莱登玄学学院,
+        role = 量子农学博士,
+        beginTime = 2038.01,
+        endTime = 至今,
+        location = {克莱登, 亚特兰蒂斯},
+    ]
+    \resumeEducationEntry[
+        institute = 克莱登大学,
+        role = 计算机科学本科,
+        beginTime = 1970.01,
+        endTime = 2038.01,
+        location = {克莱登, 亚特兰蒂斯},
+    ]
+\end{resumeEducationSection}
+
+
+\begin{resumePublicationSection}
+    \resumePublicationEntry[
+        title = {量子牛的可喂养性研究},
+        date = {2038.04},
+        author = {江斯密\footnotemark[1], 季目协伦文\footnotemark[1], 衡程之, 德袄师}
+    ]
+    \begin{resumePublicationEntryBody}
+        \item 我们研究了量子牛的可喂养性，并发现它们确实可以被喂养。这些牛能够消耗非量子草，产生准纠缠的牛奶。
+        \item 我们证明了量子牛产生的牛奶对人类无毒。
+        \item 我们实现了准纠缠牛奶生产率的 $+12.3\%$ 的提升，超过了传统的量子牛喂养方法。
+        \item 已投稿到 Mature，正在审稿中。预印本可在 \href{https://arxiv.org/abs/3802.82931}{\underline{arXiv:3802.82931}} 查看。
+    \end{resumePublicationEntryBody}
+
+    \resumePublicationEntry[
+        title = {DSH: 可靠的分布式牧羊算法},
+        date = {2038.03},
+        author = {勃吴立, 江斯密, 季目协伦文, 德袄师}
+    ]
+    \begin{resumePublicationEntryBody}
+        \item 一种新颖的分布式牧羊算法 DSH，能够实现 $O(\log^{2.38} n)$ 的摊还时间复杂度，用于管理 $n$ 只羊。
+        \item 大幅降低了现有牧羊方法的计算复杂度。
+    \end{resumePublicationEntryBody}
+\end{resumePublicationSection}
+\footnotetext[1]{共同第一作者.}
+
+\begin{resumeAwardSection}
+    \resumeAwardEntry[
+        prize = 铁牌,
+        name = 国际写不好代码大赛 (NiOSCC),
+        time = 2038.02,
+    ]
+    \resumeAwardEntry[
+        prize = 铁牌,
+        name = 第 42 届 ICPC 亚特兰蒂斯区域赛克莱登赛站,
+        time = 2038.01,
+    ]
+    \resumeAwardEntry[
+        prize = 铁牌,
+        name = 1970 年亚特兰蒂斯大学生程序设计竞赛,
+        time = 1970.01,
+    ]
+\end{resumeAwardSection}
+
+\begin{resumeExperienceSection}
+    \resumeExperienceEntry[
+        role = 软件开发实习生,
+        institute = 克莱登公司,
+        beginTime = 1970.01,
+        endTime = 2038.01,
+        location = {克莱登, 亚特兰蒂斯},
+    ]{
+        \resumeItem 从生产系统中删除所有数据库。
+        \resumeItem 通过计算从轨道电子推断的残差，从头开始恢复生产数据库。
+    }
+    \resumeExperienceEntry[
+        role = 量子农业教授,
+        institute = 克莱登大学,
+        beginTime = 2038.01,
+        location = {克莱登, 亚特兰蒂斯},
+    ]{
+        \resumeItem 举办关于如何删除生产数据库的讲座。
+        \resumeItem 举办关于如何从头开始恢复生产数据库的讲座。
+    }
+\end{resumeExperienceSection}
+
+\begin{resumeProjectSection}
+    \resumeProjectEntry[
+        name = 自动删库跑路机,
+        frameworks = {Shell},
+        duration = {1970.01 -- 2038.01},
+    ]{
+        \resumeItem 项目链接: \resumeWebLink{https://example.com}
+        \resumeItem 下载脚本时删除数据库。
+    }
+    \resumeProjectEntry[
+        name = 数据库恢复工具,
+        frameworks = {SQL},
+        duration = {2038.01 -- 至今},
+    ]{
+        \resumeItem 项目链接: \resumeWebLink{https://example.com}
+        \resumeItem 从虚无中恢复数据库。
+        \resumeItem 我们的方法\textbf{并不}保证数据完整性。
+    }
+\end{resumeProjectSection}
+
+\end{document}
