@@ -3,7 +3,7 @@
 % !Mode:: "TeX:UTF-8"
 
 % migurdia: semantic-based LaTeX resume template
-% Copyright (C) 2021 jeffswt
+% Copyright (C) 2021-2024 jeffswt
 % -----------------------------------------------------------------------------
 % Permission is hereby granted, free of charge, to any person obtaining a copy
 % of this software and associated documentation files (the “Software”), to
@@ -23,18 +23,19 @@
 % FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 % IN THE SOFTWARE.
 % -----------------------------------------------------------------------------
-% Migurdia aims at creating a resume template whose body is entirely free of
-% formatting and styling except those specifically specified by the user. All
+% Migurdia aims at creating a resume template where the body is mostly free of
+% formatting or styling except those inevitably required by the user. All
 % sections and data groups are customized through key-value arguments and can
 % be used or interpreted with ease.
 %
-% The document elements are categorized into 3 classes:
+% The document elements are organized into 3 levels:
 %  1. sections - the largest classification of all
-%  2. clusters - each event or experience consists one single cluster
-%  3. items - specific aspects of clusters, or sections if no clusters apply
+%  2. entries - each single thing consists one entry
+%  3. items - equivalent to the bullet points in a list
 %
 % 4 prebuilt sections are provided, namely the following:
-%  1. skills - fundamental programming, technical skills or abilities
+%  1. skills - fundamental programming, technical skills or abilities, or
+%     alternatively, 'brief'
 %  2. awards - prizes or honours received
 %  3. experiences - primarily work experiences, mostly of internships
 %  4. projects - small projects conducted while being sleepless
@@ -52,6 +53,8 @@
 \usepackage{keycommand}  % key-value command definitions
 \usepackage{ragged2e}  % used to justify itemize-s
 \usepackage{xeCJK}  % allow cjk characters in xelatex
+\usepackage{fontspec}  % allow text formatting
+\usepackage[symbol]{footmisc}  % fancy footnotes
 
 % ------------------------------ font config ----------------------------------
 
@@ -83,7 +86,7 @@
 \newcommand{\resumeStyleItemPaddingBefore}{\vspace{-0.32em}}
 \newcommand{\resumeStyleSectionPaddingAfter}{\vspace{-0.6em}}
 
-% hotfixes for style defects, scaled to font size
+% hotfix for style defects, scaled to font size
 \newcommand{\resumeStylefixSkillItem}{\vspace{-0.28em}}
 \newcommand{\resumeStylefixEducationSection}{\vspace{-0.1em}}
 \newcommand{\resumeStylefixAwardItem}{\vspace{-1.36em}}
@@ -98,7 +101,7 @@
 \addtolength{\topmargin}{-.5in}
 \addtolength{\textheight}{1.0in}
 
-% justifyed alignment
+% justified alignment
 \raggedbottom
 \raggedright
 
@@ -140,7 +143,7 @@
 }
 
 % @brief \begin{resumeSection} -- contains a resume section within, creating
-%        title and section decoration alongs
+%        title and section decoration along
 % @param 1: title of this section
 % @note: if padding appears to behave strangely, modify the relevant padding
 %        values in the project header
@@ -156,6 +159,13 @@
 % @brief \begin{resumeSkillSection} -- technical skills section
 \newenvironment{resumeSkillSection}{
     \begin{resumeSection}{Technical Skills}
+}{
+    \end{resumeSection}
+}
+
+% @brief \begin{resumeBriefSection} -- brief information
+\newenvironment{resumeBriefSection}{
+    \begin{resumeSection}{Brief}
 }{
     \end{resumeSection}
 }
@@ -196,11 +206,11 @@
 % @brief \resumeSubheadingTwoLinesInternal -- internal function showing
 %        subheading composed of 4 units or 2 lines, in order:
 %        **Title**                                               Remark
-%        *Subtitle line*                                      Subremark
+%        *Subtitle line*                                     Sub-remark
 % @param 1: Title to be used with bold text, lies on the upper-left
 % @param 2: Subtitle to be used in small italic, lies on the lower-left
 % @param 3: Remark in regular style, lies on the upper-right
-% @param 4: Subremark in small italic, lies on the lower-right
+% @param 4: Sub-remark in small italic, lies on the lower-right
 \newcommand{\resumeSubheadingTwoLinesInternal}[4]{
     \resumeStyleClusterPaddingBefore \item
     \begin{tabular*}{0.986\textwidth}[t]{l@{\extracolsep{\fill}}r}
@@ -223,9 +233,9 @@
     \resumeStylefixSingleSubheading
 }
 
-% @brief \resumeClusterItemList -- internal function used to withhold items
+% @brief \resumeEntryItemList -- internal function used to contain items
 % @param 1: a list of \resumeItem (s)
-\newcommand{\resumeClusterItemList}[1]{
+\newcommand{\resumeEntryItemList}[1]{
     \resumeStyleItemListPaddingBefore
     \begin{itemize}[leftmargin=1.6em, rightmargin=0.007\textwidth]
         \justifying
@@ -233,44 +243,42 @@
     \end{itemize}
 }
 
-% @brief \resumeSkillCluster -- cluster of an aspect of skill
-% @param aspect: whichever aspect to be enumerated, e.g. Languages, Tools
-% @param enlist: list of skills, in plain text
-\newkeycommand{\resumeSkillCluster}[
-        aspect = Skill,
-        enlist = List skills here,
+% @brief \resumeSkillEntry -- entry of a single (group of) skill
+% @param title: whichever aspect that is described, e.g. Languages, Tools
+% @param list: list of skills, in plain text
+\newkeycommand{\resumeSkillEntry}[
+        title = Skill,
+        list = List skills here,
 ]{
     \resumeStylefixSkillItem \resumeStyleItemPaddingBefore
-    \small \item \textbf{\commandkey{aspect}}{: \commandkey{enlist}}
+    \small \item \textbf{\commandkey{title}}{: \commandkey{list}}
 }
 
-% @brief \resumeEducationCluster -- cluster describing education received
+% @brief \resumeEducationEntry -- describing education received
 % @param institute: which university / high school / etc. did you attend
 % @param role: which major / minor were you under pursuit
 % @param beginTime: when did this education begin
 % @param endTime: when did / will this education end (Present if ongoing)
-% @param city: in which city did you attend this institute in
-% @param region: in which country / region was the city located at
-\newkeycommand{\resumeEducationCluster}[
+% @param location: describe location (city / country / region)
+\newkeycommand{\resumeEducationEntry}[
         institute = University of Claydon,
         role = Undergraduate student in Computer Science,
         beginTime = Jan. 1970,
         endTime = Present,
-        city = Claydon,
-        region = Atlantica,
+        location = {Claydon, Atlantica},
 ]{
     \resumeSubheadingTwoLinesInternal
         {\commandkey{institute}}
         {\commandkey{role}}
         {\commandkey{beginTime} -- \commandkey{endTime}}
-        {\commandkey{city}, \commandkey{region}}
+        {\commandkey{location}}
 }
 
-% @brief \resumeAwardCluster -- cluster describing award received
+% @brief \resumeAwardEntry -- describing award received
 % @param prize: level of award, e.g. Silver medal / First prize / etc.
 % @param name: name of award or canonical competition name
 % @param time: time of competition taken place (or award received otherwise)
-\newkeycommand{\resumeAwardCluster}[
+\newkeycommand{\resumeAwardEntry}[
         prize = Metal Medal,
         name = ICPC 1970 Claydon Regionals,
         time = Jan. 1970,
@@ -284,14 +292,14 @@
     \end{tabular*}
 }
 
-% @brief \resumeExperienceCluster -- cluster enlisting work experience
+% @brief \resumeExperienceEntry -- enumerating work experience
 % @param role: work role during participation
 % @param institute: company or other institute which you worked at
 % @param beginTime: begin time of this work experience
 % @param endTime: end time of this work experience (Present if ongoing)
 % @param location: location of the institute (Remote if wfh)
 % @param 1: list of cluster items
-\newkeycommand{\resumeExperienceCluster}[
+\newkeycommand{\resumeExperienceEntry}[
         role = Internship in Software Engineering,
         institute = Claydon Corporation,
         beginTime = Jan. 1970,
@@ -303,35 +311,31 @@
         {\commandkey{institute}}
         {\commandkey{beginTime} -- \commandkey{endTime}}
         {\commandkey{location}}
-    \resumeClusterItemList{#1}
+    \resumeEntryItemList{#1}
 }
 
-% @brief \resumeProjectCluster -- cluster describing project involved
+% @brief \resumeProjectEntry -- describing a project involved
 % @param name: human-friendly name of project
 % @param framework: languages, tech stacks or frameworks involved
-% @param beginTime: begin time of development
-% @param endTime: termination time of development
+% @param duration: begin -- termination time of development
 % @param 1: list of cluster items
-\newkeycommand{\resumeProjectCluster}[
+\newkeycommand{\resumeProjectEntry}[
         name = Example Project,
         frameworks = Assembly,
-        beginTime = Jan. 1970,
-        endTime = Present,
+        duration = {Jan. 1970 -- Present},
 ][1]{
     \resumeSubheadingOneLineInternal
         {\textbf{\commandkey{name}} $|$ \emph{\commandkey{frameworks}}}
-        {\commandkey{beginTime} -- \commandkey{endTime}}
-    \resumeClusterItemList{#1}
+        {\commandkey{duration}}
+    \resumeEntryItemList{#1}
 }
 
-% @brief \resumeItem -- cluster item, preceding plain text but do not require
-%        any braces around the plain text subseding it
+% @brief \resumeItem -- entry item, preceding plain text but do not require
+%        any braces around the plain text following it
 \newcommand{\resumeItem}{
     \resumeStyleItemPaddingBefore \item \small
 }
 
 % @brief \resumeWebLink -- lazily create a clickable hyperlink
 % @param 1: link with https:// schema prepended
-\newcommand{\resumeWebLink}[1]{
-    \href{#1}{\underline{#1}}
-}
+\newcommand{\resumeWebLink}[1]{\href{#1}{\underline{#1}}}
