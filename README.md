@@ -4,7 +4,15 @@ Semantic-based LaTeX resume template.
 
 Migurdia aims at creating a resume template whose body is entirely free of formatting and styling except those specifically specified by the user. All sections and data groups are customized through key-value arguments and can be used or interpreted with ease.
 
-![](assets/preview.png)
+![](assets/preview_en.jpg)
+
+We also support other languages with a single flip of a conditional switch.
+
+```latex
+\renewcommand{\configureResumeLanguage}{zh-Hans}
+```
+
+![](assets/preview_zh.jpg)
 
 ## Usage
 
