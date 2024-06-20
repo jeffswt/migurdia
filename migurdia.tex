@@ -47,38 +47,65 @@
 
 % -------------------------------- packages -----------------------------------
 
-\usepackage[empty]{fullpage}  % page size limitations
-\usepackage{titlesec}  % section format definition
 \usepackage{enumitem}  % units of measurement (?)
-\usepackage[hidelinks]{hyperref}  % hyperlinks
-\usepackage{keycommand}  % key-value command definitions
-\usepackage{ragged2e}  % used to justify itemize-s
-\usepackage{xeCJK}  % allow cjk characters in xelatex
 \usepackage{fontspec}  % allow text formatting
 \usepackage[symbol]{footmisc}  % fancy footnotes
+\usepackage[empty]{fullpage}  % page size limitations
+\usepackage[hidelinks]{hyperref}  % hyperlinks
+\usepackage{etoolbox}  % conditionals
+\usepackage{keycommand}  % key-value command definitions
+\usepackage{ragged2e}  % used to justify itemize-s
+\usepackage{titlesec}  % section format definition
+\usepackage{xeCJK}  % allow cjk characters in xelatex
 
-% ------------------------------ font config ----------------------------------
+% ----------------------------- locale config ---------------------------------
 
 % * uncomment these if you require CJK character support and have those fonts
 %   installed in your fonts library
 % * run `fc-cache -f` before xelatex if you experience lags
 
-\setmainfont{Latin Modern Roman}
+\newcommand{\migurdiaLanguage}{zh-Hans}
 
-% \newcommand{\resumeFontSerif}{Adobe Song Std}
-% \newcommand{\resumeFontSans}{Adobe Heiti Std}
-% \newcommand{\resumeFontMono}{Adobe Fangsong Std}
-% \newcommand{\resumeFontScript}{Adobe Kaiti Std}
-% \newcommand{\resumeFontLishu}{Lisu}
-% \newcommand{\resumeFontYouyuan}{YouYuan}
+\newcommand{\ifstringequal}[4]{%
+  \ifnum\pdfstrcmp{#1}{#2}=0
+  #3%
+  \else
+  #4%
+  \fi
+}
+\newkeycommand{\resumeLocalizedText}[
+    enUS = {English},
+    zhHans = {简体中文},
+]{\ifstringequal{\migurdiaLanguage}{zh-Hans}{\commandkey{zhHans}}{\commandkey{enUS}}}
 
-% \setCJKmainfont[
-%     BoldFont = \resumeFontSans,
-%     ItalicFont = \resumeFontScript,
-%     SmallCapsFont = \resumeFontSans,
-% ]{\resumeFontSerif}
-% \setCJKsansfont{\resumeFontSans}
-% \setCJKmonofont{\resumeFontMono}
+\ifstringequal{\migurdiaLanguage}{zh-Hans}{
+    % zh-Hans
+    % \newcommand{\resumeFontSerif}{Adobe Song Std}
+    % \newcommand{\resumeFontSans}{Adobe Heiti Std}
+    % \newcommand{\resumeFontMono}{Adobe Fangsong Std}
+    % \newcommand{\resumeFontScript}{Adobe Kaiti Std}
+    % \newcommand{\resumeFontLishu}{Lisu}
+    % \newcommand{\resumeFontYouyuan}{YouYuan}
+    \newcommand{\resumeFontSerif}{STSong}
+    \newcommand{\resumeFontSans}{STXihei}
+    \newcommand{\resumeFontMono}{SimHei}
+    \newcommand{\resumeFontScript}{STKaiti}
+    \newcommand{\resumeFontLishu}{LiSu}
+    \newcommand{\resumeFontYouyuan}{YouYuan}
+
+    \setCJKmainfont[
+        BoldFont = \resumeFontSans,
+        ItalicFont = \resumeFontScript,
+        SmallCapsFont = \resumeFontSans,
+    ]{\resumeFontSerif}
+    \setCJKsansfont{\resumeFontSans}
+    \setCJKmonofont{\resumeFontMono}
+}{
+    % en-US
+    \newcommand{\resumeFontSerif}{Latin Modern Roman}
+
+    \setmainfont{Latin Modern Roman}
+}
 
 % ----------------------------- style config ----------------------------------
 
@@ -162,14 +189,20 @@
 
 % @brief \begin{resumeSkillSection} -- technical skills section
 \newenvironment{resumeSkillSection}{
-    \begin{resumeSection}{Technical Skills}
+    \begin{resumeSection}{\resumeLocalizedText[
+        enUS = {Skills},
+        zhHans = {技术能力},
+    ]}
 }{
     \end{resumeSection}
 }
 
 % @brief \begin{resumeBriefSection} -- brief information
 \newenvironment{resumeBriefSection}{
-    \begin{resumeSection}{Brief}
+    \begin{resumeSection}{\resumeLocalizedText[
+        enUS = {Brief},
+        zhHans = {简介},
+    ]}
 }{
     \end{resumeSection}
 }
@@ -177,7 +210,10 @@
 % @brief \begin{resumeEducationSection} -- education section
 % @note: if padding appears to behave strangely, change the hotfix value
 \newenvironment{resumeEducationSection}{
-    \begin{resumeSection}{Education}
+    \begin{resumeSection}{\resumeLocalizedText[
+        enUS = {Education},
+        zhHans = {教育经历},
+    ]}
 }{
     \end{resumeSection}
     \resumeStylefixEducationSection
@@ -186,7 +222,10 @@
 % @brief \begin{resumeAwardSection} -- awards section
 % @note: if padding appears to behave strangely, change the hotfix value
 \newenvironment{resumeAwardSection}{
-    \begin{resumeSection}{Awards}
+    \begin{resumeSection}{\resumeLocalizedText[
+        enUS = {Awards},
+        zhHans = {获奖情况},
+    ]}
         \resumeStylefixAwardSectionBefore
 }{
     \end{resumeSection}
@@ -195,21 +234,30 @@
 
 % @brief \begin{resumeExperienceSection} -- experience section
 \newenvironment{resumeExperienceSection}{
-    \begin{resumeSection}{Experience}
+    \begin{resumeSection}{\resumeLocalizedText[
+        enUS = {Experience},
+        zhHans = {工作经历},
+    ]}
 }{
     \end{resumeSection}
 }
 
 % @brief \begin{resumeProjectSection} -- projects section
 \newenvironment{resumeProjectSection}{
-    \begin{resumeSection}{Projects}
+    \begin{resumeSection}{\resumeLocalizedText[
+        enUS = {Projects},
+        zhHans = {开源项目},
+    ]}
 }{
     \end{resumeSection}
 }
 
 % @brief \begin{resumePublicationSection} -- publications section
 \newenvironment{resumePublicationSection}{
-    \begin{resumeSection}{Publications}
+    \begin{resumeSection}{\resumeLocalizedText[
+        enUS = {Publications},
+        zhHans = {发表论文},
+    ]}
 }{
     \end{resumeSection}
 }
