@@ -45,6 +45,11 @@
 
 \documentclass[a4paper,11pt]{article}
 
+% --------------------------------- config ------------------------------------
+% usage: \renewcommand{\key}{... new value ...}
+
+\newcommand{\configureResumeLanguage}{en-US}  % en-US / zh-Hans
+
 % -------------------------------- packages -----------------------------------
 
 \usepackage{enumitem}  % units of measurement (?)
@@ -64,8 +69,6 @@
 %   installed in your fonts library
 % * run `fc-cache -f` before xelatex if you experience lags
 
-\newcommand{\migurdiaLanguage}{zh-Hans}
-
 \newcommand{\ifstringequal}[4]{%
   \ifnum\pdfstrcmp{#1}{#2}=0
   #3%
@@ -73,12 +76,11 @@
   #4%
   \fi
 }
-\newkeycommand{\resumeLocalizedText}[
-    enUS = {English},
-    zhHans = {简体中文},
-]{\ifstringequal{\migurdiaLanguage}{zh-Hans}{\commandkey{zhHans}}{\commandkey{enUS}}}
+% #1: en-UK
+% #2: zh-Hans
+\newcommand{\resumeLocalizedText}[2]{\ifstringequal{\configureResumeLanguage}{zh-Hans}{#2}{#1}}
 
-\ifstringequal{\migurdiaLanguage}{zh-Hans}{
+\ifstringequal{\configureResumeLanguage}{zh-Hans}{
     % zh-Hans
     % \newcommand{\resumeFontSerif}{Adobe Song Std}
     % \newcommand{\resumeFontSans}{Adobe Heiti Std}
@@ -189,20 +191,14 @@
 
 % @brief \begin{resumeSkillSection} -- technical skills section
 \newenvironment{resumeSkillSection}{
-    \begin{resumeSection}{\resumeLocalizedText[
-        enUS = {Skills},
-        zhHans = {技术能力},
-    ]}
+    \begin{resumeSection}{\resumeLocalizedText{Skills}{技术能力}}
 }{
     \end{resumeSection}
 }
 
 % @brief \begin{resumeBriefSection} -- brief information
 \newenvironment{resumeBriefSection}{
-    \begin{resumeSection}{\resumeLocalizedText[
-        enUS = {Brief},
-        zhHans = {简介},
-    ]}
+    \begin{resumeSection}{\resumeLocalizedText{Brief}{简介}}
 }{
     \end{resumeSection}
 }
@@ -210,10 +206,7 @@
 % @brief \begin{resumeEducationSection} -- education section
 % @note: if padding appears to behave strangely, change the hotfix value
 \newenvironment{resumeEducationSection}{
-    \begin{resumeSection}{\resumeLocalizedText[
-        enUS = {Education},
-        zhHans = {教育经历},
-    ]}
+    \begin{resumeSection}{\resumeLocalizedText{Education}{教育经历}}
 }{
     \end{resumeSection}
     \resumeStylefixEducationSection
@@ -222,10 +215,7 @@
 % @brief \begin{resumeAwardSection} -- awards section
 % @note: if padding appears to behave strangely, change the hotfix value
 \newenvironment{resumeAwardSection}{
-    \begin{resumeSection}{\resumeLocalizedText[
-        enUS = {Awards},
-        zhHans = {获奖情况},
-    ]}
+    \begin{resumeSection}{\resumeLocalizedText{Awards}{获奖情况}}
         \resumeStylefixAwardSectionBefore
 }{
     \end{resumeSection}
@@ -234,30 +224,21 @@
 
 % @brief \begin{resumeExperienceSection} -- experience section
 \newenvironment{resumeExperienceSection}{
-    \begin{resumeSection}{\resumeLocalizedText[
-        enUS = {Experience},
-        zhHans = {工作经历},
-    ]}
+    \begin{resumeSection}{\resumeLocalizedText{Experience}{工作经历}}
 }{
     \end{resumeSection}
 }
 
 % @brief \begin{resumeProjectSection} -- projects section
 \newenvironment{resumeProjectSection}{
-    \begin{resumeSection}{\resumeLocalizedText[
-        enUS = {Projects},
-        zhHans = {开源项目},
-    ]}
+    \begin{resumeSection}{\resumeLocalizedText{Projects}{开源项目}}
 }{
     \end{resumeSection}
 }
 
 % @brief \begin{resumePublicationSection} -- publications section
 \newenvironment{resumePublicationSection}{
-    \begin{resumeSection}{\resumeLocalizedText[
-        enUS = {Publications},
-        zhHans = {发表论文},
-    ]}
+    \begin{resumeSection}{\resumeLocalizedText{Publications}{发表论文}}
 }{
     \end{resumeSection}
 }
